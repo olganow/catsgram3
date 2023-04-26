@@ -3,11 +3,13 @@ package ru.yandex.practicum.catsgram.service;
 import org.springframework.stereotype.Service;
 import ru.yandex.practicum.catsgram.exception.InvalidEmailException;
 import ru.yandex.practicum.catsgram.exception.UserAlreadyExistException;
-import ru.yandex.practicum.catsgram.model.Post;
+
 import ru.yandex.practicum.catsgram.model.User;
 
 import java.util.*;
-
+//Аннотация @Service дополнительно сообщает, что класс, который добавляется в контекст приложения,
+// это именно класс с логикой, а не контроллер или что-то ещё. При этом Spring по отношению к классам
+// с @Component и @Service ведёт себя одинаково.
 @Service
 public class UserService {
 
@@ -44,4 +46,6 @@ public class UserService {
 
         return user;
     }
+
+
 }

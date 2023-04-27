@@ -41,6 +41,8 @@ public class PostController {
         Integer from = page * size;
         return postService.findAll(size, from, sort);
     }
+
+    // @RequestBody - с помощью неё можно указать Spring, в какой аргумент метода контроллера необходимо записать значение тела запроса.
     @PostMapping(value = "/post")
     public Post create(@RequestBody Post post) {
         return postService.create(post);

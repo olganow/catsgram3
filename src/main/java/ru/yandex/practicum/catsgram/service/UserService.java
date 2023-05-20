@@ -20,14 +20,21 @@ public class UserService {
     }
 
     public User createUser(User user) {
-        if (user.getEmail() == null || user.getEmail().isBlank()) {
-            throw new InvalidEmailException("Адрес электронной почты не может быть пустым.");
-        }
+        checkEmail(user);
         if (users.containsKey(user.getEmail())) {
-            throw new UserAlreadyExistException("Пользователь с электронной почтой " +
-                    user.getEmail() + " уже зарегистрирован.");
+            throw new UserAlreadyExistException(String.format(
+                    "Пользователь с электронной почтой %s уже зарегистрирован.",
+                    user.getEmail()
+            ));
         }
         users.put(user.getEmail(), user);
+        return user;
+    }
+
+    public User updateUser(User user) {
+        checkEmail(user);
+        users.put(user.getEmail(), user);
+
         return user;
     }
 
@@ -38,14 +45,9 @@ public class UserService {
         return users.get(email);
     }
 
-    public User updateUser(User user) {
+    private void checkEmail(User user) {
         if (user.getEmail() == null || user.getEmail().isBlank()) {
             throw new InvalidEmailException("Адрес электронной почты не может быть пустым.");
         }
-        users.put(user.getEmail(), user);
-
-        return user;
     }
-
-
 }

@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class User {
-
     private String email;
     private String nickname;
     private LocalDate birthdate;
